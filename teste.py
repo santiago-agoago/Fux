@@ -1,26 +1,17 @@
-#naipes
-s = {"mi" : 60, "ma" : 79}
-a = {"mi" : 55, "ma" : 74}
-t = {"mi" : 48, "ma" : 67}
-b = {"mi" : 40, "ma" : 60}
+lista1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-class Melo:
-    def __init__(self, naipe):
-        self.naipe = naipe
 
-entrada2 = str(input("> ").lower())
-print(entrada2)
-if entrada2 == "s":
-    print("soprano")
-    contra = Melo(s)
-if entrada2 == "a":
-    print("alto")
-    contra = Melo(a)
-if entrada2 == "t":
-    print("tenor")
-    contra = Melo(t)
-if entrada2 == "b":
-    print("baixo")
-    contra = Melo(b)
+lista2 =[]
+completou = False
 
-print(contra.naipe)
+while completou == False:
+    lista2.append("a")
+    for i in range(len(lista1)):
+        i += 1
+        if i == len(lista1):
+            lista2.append(lista2[0])
+            print(lista2)
+            completou = True
+            break
+        else:
+            lista2.append(i)

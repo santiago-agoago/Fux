@@ -54,35 +54,44 @@ midi_ly = {
     83 : "si''",
     84 : "do'''",
 }
-jonico = [60, 64, 65, 67, 64, 69, 67, 64, 65, 64, 62, 60]
-dorico = [62, 65, 64, 62, 67, 65, 69, 67, 65, 64, 62]
-frigio = [64, 60, 62, 60, 57, 69, 67, 64, 65, 64]
-lidio = [65, 67, 69, 65, 62, 64, 65, 72, 69, 65, 67, 65]
+jonico = [48, 52, 53, 55, 52, 57, 55, 52, 53, 52, 50, 48]
+dorico = [50, 53, 52, 50, 55, 53, 57, 55, 53, 52, 50]
+frigio = [52, 48, 50, 48, 45, 57, 55, 52, 53, 52]
+lidio = [53, 55, 57, 53, 50, 52, 53, 60, 57, 53, 55, 53]
 mixo = [43, 48, 47, 43, 48, 52, 50, 55, 52, 48, 50, 47, 45, 43]
 eolio = [57, 60, 59, 62, 60, 64, 65, 64, 62, 60, 59, 57]
 cf = []
 naturais = [36, 38, 40, 41, 43, 45, 47, 48,	50,	52,	53,	55,	57,	59, 60,	62,	64, 65, 67, 69, 71, 72, 74, 76, 77, 79, 81, 83, 84]
-int_cons = [3, 4, 7, 8, 9, 12, 15, 16, 19, 20, 21, 24]
+int_cons = [3, 4, 7, 8, 9, 12, 15, 16, 19, 20, 21]
 #naipes
-s = {"mi" : 60, "ma" : 79}
-a = {"mi" : 55, "ma" : 74}
-t = {"mi" : 48, "ma" : 67}
-b = {"mi" : 40, "ma" : 60}
+s = {"mi" : 60, "ma" : 79, "clave" : "soprano"}
+a = {"mi" : 55, "ma" : 74, "clave" : "alto"}
+t = {"mi" : 48, "ma" : 67, "clave" : "tenor"}
+b = {"mi" : 40, "ma" : 60, "clave" : "bass"}
 
 class CF:
     def __init__(self, modo, naipe):
         self.modo = modo
         self.naipe = naipe
-class Melo:
+    def clave(self):
+        if self.naipe == 1:
+            return "bass"
+        else:
+            return "alto"
+
+
+class RES:
     def __init__(self, naipe):
         self.naipe = naipe
+    def notas(self):
+        self.notas = []
 
 def cf_auto():
     global cf
     global contra
-    print("Qual o cantus firmus?\n1. Jônico\n2. Dórico\n3. Frígio\n4. Lídio\n5. Mixolídio\n6. Eólio")
+    print("\nQual o cantus firmus?\n1. Jônico\n2. Dórico\n3. Frígio\n4. Lídio\n5. Mixolídio\n6. Eólio")
     entrada = int(input("> "))
-    print("Gerar melodia inferior ou superior?\n1. Superior\n2. Inferior")
+    print("\nGerar melodia inferior ou superior?\n1. Superior\n2. Inferior")
     if entrada == 1:
         cf = CF(jonico, int(input("> ")))
     if entrada == 2:
@@ -95,30 +104,43 @@ def cf_auto():
         cf = CF(mixo, int(input("> ")))
     if entrada == 6:
         cf = CF(eolio, int(input("> ")))
-    print("Para que naipe?\nS A C B")
+    print("\nPara que naipe?\nS A T B")
     entrada2 = str(input("> ").lower())
     if entrada2 == "s":
-        contra = Melo(s)
+        contra = RES(s)
     if entrada2 == "a":
-        contra = Melo(a)
+        contra = RES(a)
     if entrada2 == "t":
-        contra = Melo(t)
+        contra = RES(t)
     if entrada2 == "b":
-        contra = Melo(b)
-
-cf_auto()
-print(cf.modo, cf.naipe, contra.naipe)
+        contra = RES(b)
+def oitava(modo):
+    for i in range(len(modo)):
+        modo[i] -= 12
+    print(modo)
 
 def print_prim_esp(cf, res):
-    print("\n\\version \"2.22.2\"\n\\language \"portugues\" \n<<\n\\new Staff {")
-    for i in range(len(res)):
-        print(midi_ly[res[i]], "1", sep="", end=" ")
-        if i == len(cf.modo) - 1:
-            print("\n}\n\\new Staff \with {instrumentName = \"CF\"}\n{\n\\clef bass")
-    for i in range(len(cf.modo)):
-        print(midi_ly[cf.modo[i]], "1", sep="", end=" ")
-        if i == len(cf.modo) - 1:
-            print("\n}\n>>\n")
+    if cf.naipe == 1:
+        print("\n\\version \"2.22.2\"\n\\language \"portugues\" \n<<\n\\new Staff {\n\\clef ", res.naipe["clave"])
+        for i in range(len(res.notas)):
+            print(midi_ly[res.notas[i]], "1", sep="", end=" ")
+            if i == len(cf.modo) - 1:
+                print("\n}\n\\new Staff \with {instrumentName = \"CF\"}\n{\n\\clef bass")
+        for i in range(len(cf.modo)):
+            print(midi_ly[cf.modo[i]], "1", sep="", end=" ")
+            if i == len(cf.modo) - 1:
+                print("\n}\n>>\n")
+    else:
+        print("\n\\version \"2.22.2\"\n\\language \"portugues\" \n<<\n\\new Staff \with {instrumentName = \"CF\"}\n{\n\\clef alto")
+        for i in range(len(cf.modo)):
+            print(midi_ly[cf.modo[i] + 12], "1", sep="", end=" ")
+            if i == len(cf.modo) - 1:
+                print("\n}\n\\new Staff {\n\\clef ", res.naipe["clave"])
+        for i in range(len(res.notas)):
+            print(midi_ly[res.notas[i]], "1", sep="", end=" ")
+            if i == len(cf.modo) - 1:
+                print("\n}\n>>\n")
+
 
 #quantizador
 def quant(nota):
@@ -126,13 +148,13 @@ def quant(nota):
         return nota + 1
     else:
         return nota
-#verifica consonâncias
+
+#verificações
 def verif_cons(nota1, nota2):
     if abs(nota1 - nota2) in int_cons:
         return True
     else:
         return False
-
 def verif_tess(nota, naipe):
     if nota > naipe["ma"] or nota < naipe["mi"]:
         return False
@@ -149,16 +171,24 @@ def prim_esp(cf, contra):
     while completou == False:
         res = []
 
+        #primeira nota
+        if cf.naipe == 1:
+            nota2 = random.randint(0, 1) * 12 + cf.modo[0]
+            if verif_tess(nota2, contra.naipe):
+                res.append(nota2)
+        else:
+            nota2 = random.randint(-1, 0) * 12 + cf.modo[0]
+            if verif_tess(nota2, contra.naipe):
+                res.append(nota2)
+
         for i in range(len(cf.modo)):
-            if i == 0:
-                if cf.naipe == 1:
-                    res.append(random.randint(0, 1) * 12 + cf.modo[0])
-                else:
-                    res.append(random.randint(-1, 0) * 12 + cf.modo[0])
-            if i == len(cf.modo) - 2:
+            i += 1
+            #última nota
+            if i == len(cf.modo) - 1:
                     res.append(res[0])
                     completou = True
                     print("\n")
+                    break
 
             else:
                 nota2 = random.randint(contra.naipe["mi"], contra.naipe["ma"])
@@ -174,8 +204,12 @@ def prim_esp(cf, contra):
         if it >= 100000:
             print("\nExcedeu limite de iterações")
             break
-    print(res)
-    print(cf.modo)
+    print("resolução:     ", res)
+    print("cantus firmus: ", cf.modo)
 
+    contra.notas = res
+
+cf_auto()
+print("\n", cf.modo, cf.naipe, contra.naipe,"\n")
 prim_esp(cf, contra)
-print_prim_esp(cf, res)
+print_prim_esp(cf, contra)
