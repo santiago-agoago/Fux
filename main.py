@@ -1,6 +1,7 @@
 import random
 import statistics
-#oi git
+#testando git
+
 midi_ly = {
     36 : "do,",
     37 : "dos,",
