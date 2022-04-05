@@ -32,8 +32,11 @@ class CF:
 class RES:
     def __init__(self, naipe):
         self.naipe = naipe
-    def notas(self):
         self.notas = []
+    def adicionar_notas(self, nota):
+        self.notas.append(nota)
+
+
 def cf_auto():
     global cf
     global contra
@@ -108,6 +111,7 @@ def filt_pll(i, cf, res, nota):
 def main(cf, contra):
     global res
     global it
+
     it = 1
     res = []
     completou = False
@@ -118,18 +122,17 @@ def main(cf, contra):
         if cf.naipe == 1:
             nota2 = random.randint(0, 1) * 12 + cf.modo[0]
             if not filt_tess(nota2, contra.naipe):
-                res.append(nota2)
+                contra.adicionar_notas(nota2)
         else:
             nota2 = random.randint(-1, 0) * 12 + cf.modo[0]
             if not filt_tess(nota2, contra.naipe):
-                res.append(nota2)
+                contra.adicionar_notas(nota2)
 
-        for i in range(len(cf.modo)):
+        for i in range(1,len(cf.modo)):
             i += 1
-
             #última nota
-            if len(res) == len(cf.modo) - 1:
-                res.append(res[0])
+            if len(contra.notas) == len(cf.modo) - 1:
+                contra.adicionar_notas(contra.notas[0])
                 completou = True
                 print("\n")
                 print(f"tentativas: {it}")
@@ -144,7 +147,7 @@ def main(cf, contra):
                     break
 
                 else:
-                    res.append(nota2)
+                    contra.adicionar_notas(nota2)
         if it >= 1000000000:
             print("\nExcedeu limite de iterações")
             break
@@ -153,5 +156,5 @@ cf_auto()
 print("\n", cf.modo, cf.naipe, contra.naipe,"\n")
 main(cf, contra)
 print(f"cantus firmus:{cf.modo}")
-print(f"resolução:    {res}")
-print_prim_esp(cf, contra, res)
+print(f"resolução:    {contra.notas}")
+print_prim_esp(cf, contra, contra.notas)
