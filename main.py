@@ -1,58 +1,8 @@
 import random
 import statistics
-#testando git2
-#teste3
 
 midi_ly = {
-    36 : "do,",
-    37 : "dos,",
-    38 : "re,",
-    39 : "res,",
-    40 : "mi,",
-    41 : "fa,",
-    42 :  "fas,",
-    43 : "sol,",
-    44 : "sols,",
-    45 : "la,",
-    46 : "las,",
-    47 : "si,",
-    48 : "do",
-    49 : "dos",
-    50 : "re",
-    51 : "res",
-    52 : "mi",
-    53 : "fa",
-    54 : "fas",
-    55 : "sol",
-    56 : "sols",
-    57 : "la",
-    58 : "las",
-    59 : "si",
-    60 : "do'",
-    61 : "dos'",
-    62 : "re'",
-    63 : "res'",
-    64 : "mi'",
-    65 : "fa'",
-    66 : "fas'",
-    67 : "sol'",
-    68 : "sols'",
-    69 : "la'",
-    70 : "las'",
-    71 : "si'",
-    72 : "do''",
-    73 : "dos''",
-    74 : "re''",
-    75 : "res''",
-    76 : "mi''",
-    77 : "fa''",
-    78 : "fas''",
-    79 : "sol''",
-    80 : "sols''",
-    81 : "la''",
-    82 : "las''",
-    83 : "si''",
-    84 : "do'''",
+    36 : "do,", 37 : "dos,", 38 : "re,", 39 : "res,", 40 : "mi,", 41 : "fa,", 42 :  "fas,", 43 : "sol,", 44 : "sols,", 45 : "la,", 46 : "las,", 47 : "si,", 48 : "do", 49 : "dos", 50 : "re", 51 : "res", 52 : "mi", 53 : "fa", 54 : "fas", 55 : "sol", 56 : "sols", 57 : "la", 58 : "las", 59 : "si", 60 : "do'", 61 : "dos'", 62 : "re'", 63 : "res'", 64 : "mi'", 65 : "fa'", 66 : "fas'", 67 : "sol'", 68 : "sols'", 69 : "la'", 70 : "las'", 71 : "si'", 72 : "do''", 73 : "dos''", 74 : "re''", 75 : "res''", 76 : "mi''", 77 : "fa''", 78 : "fas''", 79 : "sol''", 80 : "sols''", 81 : "la''", 82 : "las''", 83 : "si''", 84 : "do'''",
 }
 jonico = [48, 52, 53, 55, 52, 57, 55, 52, 53, 52, 50, 48]
 dorico = [50, 53, 52, 50, 55, 53, 57, 55, 53, 52, 50]
@@ -79,12 +29,12 @@ class CF:
         else:
             return "alto"
 
-
 class RES:
     def __init__(self, naipe):
         self.naipe = naipe
     def notas(self):
         self.notas = []
+
 
 def cf_auto():
     global cf
@@ -114,11 +64,8 @@ def cf_auto():
         contra = RES(t)
     if entrada2 == "b":
         contra = RES(b)
-def oitava(modo):
-    for i in range(len(modo)):
-        modo[i] -= 12
-    print(modo)
 
+#print
 def print_prim_esp(cf, res):
     if cf.naipe == 1:
         print("\n\\version \"2.22.2\"\n\\language \"portugues\" \n<<\n\\new Staff {\n\\clef ", res.naipe["clave"])
@@ -162,7 +109,7 @@ def verif_tess(nota, naipe):
         return True
 
 #gera primeira espécie
-def prim_esp(cf, contra):
+def main(cf, contra):
     global res
     global it
     it = 1
@@ -211,5 +158,5 @@ def prim_esp(cf, contra):
 
 cf_auto()
 print("\n", cf.modo, cf.naipe, contra.naipe,"\n")
-prim_esp(cf, contra)
+main(cf, contra)
 print_prim_esp(cf, contra)
