@@ -1,25 +1,6 @@
 import random
-import statistics
-#teste hub
-midi_ly = {
-    36 : "do,", 37 : "dos,", 38 : "re,", 39 : "res,", 40 : "mi,", 41 : "fa,", 42 :  "fas,", 43 : "sol,", 44 : "sols,", 45 : "la,", 46 : "las,", 47 : "si,", 48 : "do", 49 : "dos", 50 : "re", 51 : "res", 52 : "mi", 53 : "fa", 54 : "fas", 55 : "sol", 56 : "sols", 57 : "la", 58 : "las", 59 : "si", 60 : "do'", 61 : "dos'", 62 : "re'", 63 : "res'", 64 : "mi'", 65 : "fa'", 66 : "fas'", 67 : "sol'", 68 : "sols'", 69 : "la'", 70 : "las'", 71 : "si'", 72 : "do''", 73 : "dos''", 74 : "re''", 75 : "res''", 76 : "mi''", 77 : "fa''", 78 : "fas''", 79 : "sol''", 80 : "sols''", 81 : "la''", 82 : "las''", 83 : "si''", 84 : "do'''",
-}
-jonico = [48, 52, 53, 55, 52, 57, 55, 52, 53, 52, 50, 48]
-dorico = [50, 53, 52, 50, 55, 53, 57, 55, 53, 52, 50]
-frigio = [52, 48, 50, 48, 45, 57, 55, 52, 53, 52]
-lidio = [53, 55, 57, 53, 50, 52, 53, 60, 57, 53, 55, 53]
-mixo = [43, 48, 47, 43, 48, 52, 50, 55, 52, 48, 50, 47, 45, 43]
-eolio = [45, 48, 47, 50, 48, 52, 53, 52, 50, 48, 47, 45]
-cf = []
-naturais = [36, 38, 40, 41, 43, 45, 47, 48,	50,	52,	53,	55,	57,	59, 60,	62,	64, 65, 67, 69, 71, 72, 74, 76, 77, 79, 81, 83, 84]
-int_cons = [0, 3, 4, 7, 8, 9, 12, 15, 16, 19, 20, 21]
-int_meldis = [-11, -10, -9, -8, -6, 6, 9, 10, 11]
-conper = [0, 7, 12, 19]
-#naipes
-s = {"mi" : 60, "ma" : 79, "clave" : "soprano"}
-a = {"mi" : 55, "ma" : 74, "clave" : "alto"}
-t = {"mi" : 48, "ma" : 67, "clave" : "tenor"}
-b = {"mi" : 40, "ma" : 60, "clave" : "bass"}
+from dicionario import *
+
 
 class CF:
     def __init__(self, modo, naipe):
@@ -142,6 +123,7 @@ def main(cf, contra):
         j = 0
         #primeira nota
         while len(contra.notas) == 0:
+            it += 1
             j += 1
             if cf.naipe == 1:
                 nota2 = random.randint(0, 1) * 12 + cf.modo[0]
@@ -187,7 +169,7 @@ def main(cf, contra):
 
                 else:
                     contra.add(nota2)
-        if it >= 1000000:
+        if it >= 5000000:
             print("\nExcedeu limite de iterações")
             abortar = True
             break
@@ -195,6 +177,5 @@ def main(cf, contra):
 cf_auto()
 print("\n", cf.modo, cf.naipe, contra.naipe)
 main(cf, contra)
-print(f"cantus firmus:{cf.modo}")
-print(f"resolução:    {contra.notas}")
+print(f"cantus firmus:{cf.modo}\nresolução:    {contra.notas}\niterações:    {it}")
 print_prim_esp(cf, contra)
