@@ -13,6 +13,7 @@ eolio = [45, 48, 47, 50, 48, 52, 53, 52, 50, 48, 47, 45]
 cf = []
 naturais = [36, 38, 40, 41, 43, 45, 47, 48,	50,	52,	53,	55,	57,	59, 60,	62,	64, 65, 67, 69, 71, 72, 74, 76, 77, 79, 81, 83, 84]
 int_cons = [0, 3, 4, 7, 8, 9, 12, 15, 16, 19, 20, 21]
+int_meldis = [-11, -10, -9, -8, -6, 6, 9, 10, 11]
 conper = [0, 7, 12, 19]
 #naipes
 s = {"mi" : 60, "ma" : 79, "clave" : "soprano"}
@@ -117,6 +118,12 @@ def filt_pll(i, cf, res, nota):
             return True
         if int_mel(res[i - 1], nota) <= -1 and int_mel(cf[i - 1], cf[i]) <=-1:
             return True
+def filt_meldis(i, res, nota):
+    if int_mel(res[i -1], nota) in int_meldis:
+        return True
+    if int_har(res[i - 1], nota) > 12:
+        return True
+
 
 
 def filt_rep(i, res, nota):
@@ -173,7 +180,8 @@ def main(cf, contra):
                 #filtros
                 if filt_diss(cf.modo[i], nota2) \
                 or filt_pll(i, cf.modo, contra.notas, nota2)\
-                or filt_rep(i, contra.notas, nota2):
+                or filt_rep(i, contra.notas, nota2)\
+                or filt_meldis(i, contra.notas, nota2):
                     it += 1
                     break
 
@@ -185,7 +193,7 @@ def main(cf, contra):
             break
 
 cf_auto()
-print("\n", cf.modo, cf.naipe, contra.naipe,"\n")
+print("\n", cf.modo, cf.naipe, contra.naipe)
 main(cf, contra)
 print(f"cantus firmus:{cf.modo}")
 print(f"resolução:    {contra.notas}")
