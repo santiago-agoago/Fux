@@ -1,6 +1,6 @@
 import random
 import statistics
-
+#teste hub
 midi_ly = {
     36 : "do,", 37 : "dos,", 38 : "re,", 39 : "res,", 40 : "mi,", 41 : "fa,", 42 :  "fas,", 43 : "sol,", 44 : "sols,", 45 : "la,", 46 : "las,", 47 : "si,", 48 : "do", 49 : "dos", 50 : "re", 51 : "res", 52 : "mi", 53 : "fa", 54 : "fas", 55 : "sol", 56 : "sols", 57 : "la", 58 : "las", 59 : "si", 60 : "do'", 61 : "dos'", 62 : "re'", 63 : "res'", 64 : "mi'", 65 : "fa'", 66 : "fas'", 67 : "sol'", 68 : "sols'", 69 : "la'", 70 : "las'", 71 : "si'", 72 : "do''", 73 : "dos''", 74 : "re''", 75 : "res''", 76 : "mi''", 77 : "fa''", 78 : "fas''", 79 : "sol''", 80 : "sols''", 81 : "la''", 82 : "las''", 83 : "si''", 84 : "do'''",
 }
