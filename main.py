@@ -1,6 +1,7 @@
 import random
 from aritmetica import *
 from saida import *
+import timeit
 from cadencia import *
 
 #quantizador
@@ -14,16 +15,15 @@ def gerar_nota(cp):
 #gera primeira espécie
 def main(cf, cp):
     global it
-    it = 1
+    it = 0
     completou = False
     abortar = False
+    start = timeit.default_timer()
     while completou == False and abortar == False:
         cp.clear()
-        j = 0
+        it += 1
         #primeira nota
         while len(cp.notas) == 0:
-            it += 1
-            j += 1
 
             if cp.reg == 2:
                 random.shuffle(prim_nota_sup)
@@ -43,18 +43,21 @@ def main(cf, cp):
                 print("Voz incompatível")
                 abortar = True
                 break
-        #principal
+
         for i in range(1, len(cf.modo)):
             #CADENCIA
             if len(cp.notas) == len(cf.modo) - 3:
                 #sub-rotina de cadência
                 if cad_prim(cf, cp, i):
+                    stop = timeit.default_timer()
+                    print(f"|iterações:    {it}")
+                    print(f"|tempo:        {stop - start}")
+                    print(f"|i/s:          {it / (stop - start)}")
                     completou = True
-                    print(f"tentativas: {it}")
                     break
                 else:
                     break
-
+            #miolo
             else:
                 nota2 = gerar_nota(cp)
                 #filtros
@@ -62,9 +65,7 @@ def main(cf, cp):
                 or filt_pll(i, cf.modo, cp.notas, nota2)\
                 or filt_rep(i, cp.notas, nota2)\
                 or filt_meldis(i, cp.notas, nota2):
-                    it += 1
                     break
-
                 else:
                     cp.add(nota2)
         if it >= 5000000:
@@ -77,3 +78,4 @@ def main(cf, cp):
 #main(cf, cp)
 #print(f"cantus firmus:{cf.modo}\nresolução:    {cp.notas}\niterações:    {it}")
 #print_prim_esp(cf, cp)
+

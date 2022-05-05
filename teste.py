@@ -1,48 +1,39 @@
 from entrada import *
 from main import *
+import timeit
+
+def run(cf, cp):
+    # print(cf.modo, cf.voz)
+    # print(cp.reg, cp.voz)
+    main(cf, cp)
+    print(f"|cantus firmus:{cf.modo}\n|resolução:    {cp.notas}")
+    print_prim_esp(cf, cp, )
+    print()
 
 def teste():
-    for i in range(6):
-        if cantus_firmi[i] == lidio:
-            cf = CF(cantus_firmi[i], t)
+    for key, value in cantus_firmi.items():
+        if value == lidio:
+            cf = CF(value, t)
+            print(f"\n–> {key}\n")
             for j in range(2):
                 if j == 0:
                     cp = RES(j + 1, b)
-                    #print(cf.modo, cf.voz)
-                    #print(cp.reg, cp.voz)
-                    main(cf, cp)
-                    print(f"cantus firmus:{cf.modo}\nresolução:    {cp.notas}")
-                    print_prim_esp(cf, cp,)
-                    print("\n")
-
+                    run(cf, cp)
                 else:
                     cp = RES(j + 1, a)
-                    #print(cf.modo, cf.voz)
-                    #print(cp.reg, cp.voz)
-                    main(cf, cp)
-                    print(f"cantus firmus:{cf.modo}\nresolução:    {cp.notas}")
-                    print_prim_esp(cf, cp,)
-                    print("\n")
+                    run(cf, cp)
+                    print("_________________________________________________")
 
         else:
-            cf = CF(cantus_firmi[i], a)
+            cf = CF(value, a)
+            print(f"\n–> {key}\n")
             for j in range(2):
                 if j == 0:
                     cp = RES(j + 1, t)
-                    #print(cf.modo, cf.voz)
-                    #print(cp.reg, cp.voz)
-                    main(cf, cp)
-                    print(f"cantus firmus:{cf.modo}\nresolução:    {cp.notas}")
-                    print_prim_esp(cf, cp, )
-                    print("\n")
+                    run(cf, cp)
                 else:
                     cp = RES(j + 1, s)
-                    #print(cf.modo, cf.voz)
-                    #print(cp.reg, cp.voz)
-                    main(cf, cp)
-                    print(f"cantus firmus:{cf.modo}\nresolução:    {cp.notas}")
-                    print_prim_esp(cf, cp, )
-                    print("\n")
+                    run(cf, cp)
+                    print("_________________________________________________")
 
 teste()
-

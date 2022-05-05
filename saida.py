@@ -14,7 +14,7 @@ def print_prim_esp(cf, cp):
             if i == len(cf.modo) - 1:
                 print("\n}\n>>")
     else:
-        print("\n\\version \"2.22.2\"\n\\language \"portugues\" \n<<\n\\new Staff \with {instrumentName = \"CF\"}\n{\n\\clef", cf.voz["clave"])
+        print("\n\\version \"2.22.2\"\n\\language \"portugues\" \n<<\n\\new Staff \with { \instrumentName = \"CF\"}\n{\n\\clef", cf.voz["clave"])
         for i in range(len(cf.modo)):
             print(midi_ly[cf.modo[i]], "1", sep="", end=" ")
             if i == len(cf.modo) - 1:

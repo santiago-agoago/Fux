@@ -8,7 +8,9 @@ lidio = [53, 55, 57, 53, 50, 52, 53, 60, 57, 53, 55, 53]
 mixo = [55, 60, 59, 55, 60, 64, 62, 67, 64, 60, 62, 59, 57, 55]
 eolio = [57, 60, 59, 62, 60, 64, 65, 64, 62, 60, 59, 57]
 jonico = [60, 64, 65, 67, 64, 69, 67, 64, 65, 64, 62, 60]
-cantus_firmi = [dorico, frigio, lidio, mixo, eolio, jonico]
+cantus_firmi = {"D Ó R I C O": dorico, "F R Í G I O": frigio, "L Í D I O": lidio, "M I X O L Í D I O": mixo, "E Ó L I O": eolio, "J Ô N I C O": jonico}
+
+
 cf = []
 naturais = [36, 38, 40, 41, 43, 45, 47, 48,	50,	52,	53,	55,	57,	59, 60,	62,	64, 65, 67, 69, 71, 72, 74, 76, 77, 79, 81, 83, 84]
 int_cons = [3, 4, 7, 8, 9, 12, 15, 16, 19, 20, 21]
@@ -16,9 +18,8 @@ int_meldis = [-11, -10, -9, -8, -6, 6, 8, 9, 10, 11]
 conper = [0, 7, 12, 19]
 prim_nota_sup = [0, 7, 12]
 prim_nota_inf = [0, -12]
-
 #vozes
-s = {"mi" : 60, "ma" : 79, "clave" : "soprano"}
-a = {"mi" : 55, "ma" : 74, "clave" : "alto"}
-t = {"mi" : 48, "ma" : 67, "clave" : "tenor"}
-b = {"mi" : 40, "ma" : 60, "clave" : "bass"}
+s = {"mi": 60, "ma": 79, "clave": "soprano"}
+a = {"mi": 55, "ma": 74, "clave": "alto"}
+t = {"mi": 48, "ma": 67, "clave": "tenor"}
+b = {"mi": 40, "ma": 60, "clave": "bass"}
