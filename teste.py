@@ -2,7 +2,12 @@ from entrada import *
 from main import *
 import timeit
 from datetime import date
+import subprocess
+
 dados = open("dados.txt", "a", encoding = "utf-8")
+
+def get_git() -> str:
+    return subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).decode('ascii').strip()
 
 def run(cf, cp):
     # print(cf.modo, cf.voz)
@@ -41,6 +46,6 @@ def teste():
     stop = timeit.default_timer()
     tempo_total = round(stop - start, 2)
     print(f"TEMPO TOTAL (s): {tempo_total}")
-    dados.write(f"{date.today()}: {str(tempo_total)}\n")
+    dados.write(f"{date.today()} git: {get_git()} t = {str(tempo_total)}\n")
 
 teste()
