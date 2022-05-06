@@ -10,14 +10,16 @@ def get_git() -> str:
     return subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).decode('ascii').strip()
 
 def run(cf, cp):
+    global it
     # print(cf.modo, cf.voz)
     # print(cp.reg, cp.voz)
-    main(cf, cp)
+    it = main(cf, cp)
     print(f"|cantus firmus:{cf.modo}\n|resolução:    {cp.notas}")
     print_prim_esp(cf, cp,)
     print()
 
 def teste():
+    it_total = 0
     start = timeit.default_timer()
     for key, value in cantus_firmi.items():
         if value == lidio:
@@ -27,9 +29,11 @@ def teste():
                 if j == 0:
                     cp = RES(j + 1, b)
                     run(cf, cp)
+                    it_total += it
                 else:
                     cp = RES(j + 1, a)
                     run(cf, cp)
+                    it_total += it
                     print("_________________________________________________")
 
         else:
@@ -39,13 +43,17 @@ def teste():
                 if j == 0:
                     cp = RES(j + 1, t)
                     run(cf, cp)
+                    it_total += it
                 else:
                     cp = RES(j + 1, s)
                     run(cf, cp)
+                    it_total += it
                     print("_________________________________________________")
     stop = timeit.default_timer()
     tempo_total = round(stop - start, 2)
     print(f"TEMPO TOTAL (s): {tempo_total}")
-    dados.write(f"{date.today()} git: {get_git()} t = {str(tempo_total)}\n")
+    print(f"ITERAÇÕES TOTAIS: {it_total}")
+    dados.write(f"{date.today()} git: {get_git()} / iterações: {it_total} t = {str(tempo_total)}\n")
 
-teste()
+for i in range(10):
+    teste()

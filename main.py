@@ -55,6 +55,7 @@ def main(cf, cp):
                     print(f"|iterações:    {it}")
                     print(f"|tempo (s):    {round(stop - start, 2)}")
                     print(f"|i/s:          {round(it / (stop - start), 2)}")
+                    return it
                     completou = True
                     break
                 else:
