@@ -1,5 +1,13 @@
 from aritmetica import *
 import random
+def filtros(i, cf, cp, nota):
+    if filt_pll(i, cf.modo, cp.notas, nota) \
+            or filt_meldis(i, cp.notas, nota) \
+            or filt_rep(i, cp.notas, nota) \
+            or filt_saltos(i, cp.notas, nota):
+        return True
+
+
 
 #cadência primeira espécie
 def cad_prim(cf, cp, i):
@@ -7,12 +15,12 @@ def cad_prim(cf, cp, i):
     if cf.modo == dorico or cf.modo == eolio:
         if cp.reg == 2:
             nota2 = cf.modo[len(cf.modo) - 1] + 12
-            if not filt_pll(i, cf.modo, cp.notas, nota2) and not filt_meldis(i, cp.notas, nota2) and not filt_rep(i, cp.notas, nota2):
+            if not filtros(i, cf, cp, nota2):
                 cp.add(nota2)
 
         else:
             nota2 = cf.modo[len(cf.modo) - 1]
-            if not filt_pll(i, cf.modo, cp.notas, nota2) and not filt_meldis(i, cp.notas, nota2) and not filt_rep(i, cp.notas, nota2):
+            if not filtros(i, cf, cp, nota2):
                 cp.add(nota2)
 
 # cadência tipo 1 ou tipo 2
@@ -20,7 +28,7 @@ def cad_prim(cf, cp, i):
         #tipo 1
         if cp.reg == 2:
             nota2 = cf.modo[len(cf.modo) - 1] + 12
-            if not filt_pll(i, cf.modo, cp.notas, nota2) and not filt_meldis(i, cp.notas, nota2) and not filt_rep(i, cp.notas, nota2):
+            if not filtros(i, cf, cp, nota2):
                 cp.add(nota2)
         #tipo 2
         else:
@@ -28,7 +36,7 @@ def cad_prim(cf, cp, i):
             random.shuffle(np)
             for i in range(2):
                 nota2 = np[i]
-                if not filt_pll(i, cf.modo, cp.notas, nota2) and not filt_meldis(i, cp.notas, nota2) and not filt_rep(i, cp.notas, nota2):
+                if not filtros(i, cf, cp, nota2):
                     cp.add(nota2)
                     break
 
@@ -36,7 +44,7 @@ def cad_prim(cf, cp, i):
         #tipo 1
         if cp.reg == 2:
             nota2 = cf.modo[len(cf.modo) - 1] + 12
-            if not filt_pll(i, cf.modo, cp.notas, nota2) and not filt_meldis(i, cp.notas, nota2) and not filt_rep(i, cp.notas, nota2):
+            if not filtros(i, cf, cp, nota2):
                 cp.add(nota2)
         #tipo 2
         else:
@@ -44,7 +52,7 @@ def cad_prim(cf, cp, i):
             random.shuffle(np)
             for i in range(2):
                 nota2 = np[i]
-                if not filt_pll(i, cf.modo, cp.notas, nota2) and not filt_meldis(i, cp.notas, nota2) and not filt_rep(i, cp.notas, nota2):
+                if not filtros(i, cf, cp, nota2):
                     cp.add(nota2)
                     break
 

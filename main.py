@@ -4,7 +4,8 @@ from saida import *
 import timeit
 from cadencia import *
 
-#quantizador
+
+# quantizador
 def gerar_nota(cp):
     nota2 = random.randint(cp.voz["mi"], cp.voz["ma"])
     if nota2 not in naturais:
@@ -12,7 +13,8 @@ def gerar_nota(cp):
     else:
         return nota2
 
-#gera primeira espécie
+
+# gera primeira espécie
 def main(cf, cp):
     global it
     it = 0
@@ -22,7 +24,7 @@ def main(cf, cp):
     while completou == False and abortar == False:
         cp.clear()
         it += 1
-        #primeira nota
+        # primeira nota
         while len(cp.notas) == 0:
 
             if cp.reg == 2:
@@ -45,37 +47,27 @@ def main(cf, cp):
                 break
 
         for i in range(1, len(cf.modo)):
-            #CADENCIA
+            # CADENCIA
             if len(cp.notas) == len(cf.modo) - 3:
-                #sub-rotina de cadência
+                # sub-rotina de cadência
                 if cad_prim(cf, cp, i):
                     stop = timeit.default_timer()
                     print(f"|iterações:    {it}")
-                    print(f"|tempo:        {stop - start}")
-                    print(f"|i/s:          {it / (stop - start)}")
+                    print(f"|tempo (s):    {round(stop - start, 2)}")
+                    print(f"|i/s:          {round(it / (stop - start), 2)}")
                     completou = True
                     break
                 else:
                     break
-            #miolo
+            # miolo
             else:
                 nota2 = gerar_nota(cp)
-                #filtros
+                # filtros
                 if filt_diss(cf.modo[i], nota2) \
-                or filt_pll(i, cf.modo, cp.notas, nota2)\
-                or filt_rep(i, cp.notas, nota2)\
-                or filt_meldis(i, cp.notas, nota2):
+                        or filt_pll(i, cf.modo, cp.notas, nota2) \
+                        or filt_rep(i, cp.notas, nota2) \
+                        or filt_meldis(i, cp.notas, nota2)\
+                        or filt_saltos(i, cp.notas, nota2):
                     break
                 else:
                     cp.add(nota2)
-        if it >= 5000000:
-            print("\nExcedeu limite de iterações")
-            abortar = True
-            break
-
-#cp, cf = cf_auto()
-#print("\n", cf.modo, cf.voz, "\n", cp.reg, cp.voz)
-#main(cf, cp)
-#print(f"cantus firmus:{cf.modo}\nresolução:    {cp.notas}\niterações:    {it}")
-#print_prim_esp(cf, cp)
-
