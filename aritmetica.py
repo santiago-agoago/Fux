@@ -39,6 +39,19 @@ def filt_pll(i, cf, res, nota):
         if int_mel(res[i - 1], nota) <= 1 and int_mel(cf[i - 1], cf[i]) <= -1:
             return True
 
+    #oitava alcançada por salto (Fux p. 38) (escrever)
+
+#filtros de recomendação (heurísticos)
+def filt_grau_conj(i, res, nota, fila):
+    if int_har(nota, res[i - 1]) <= 4 and int_har(nota, res[i - 1]) != 0:
+        return False
+    #permite saltos de acordo com o tamanho da fila e o tamanho do salto. valores devem ser ajustados
+    elif len(fila) > 1:
+        return False
+    else:
+        return True
+
+
 #retorna intervalo
 def int_har(nota1, nota2):
     return abs(nota1 - nota2)

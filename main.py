@@ -45,7 +45,7 @@ def main(cf, cp):
                 print("Voz incompatível")
                 abortar = True
                 break
-
+        fila = []
         for i in range(1, len(cf.modo)):
             # CADENCIA
             if len(cp.notas) == len(cf.modo) - 3:
@@ -60,15 +60,36 @@ def main(cf, cp):
                     break
                 else:
                     break
+
             # miolo
             else:
-                nota2 = gerar_nota(cp)
-                # filtros
-                if filt_diss(cf.modo[i], nota2) \
-                        or filt_pll(i, cf.modo, cp.notas, nota2) \
-                        or filt_rep(i, cp.notas, nota2) \
-                        or filt_meldis(i, cp.notas, nota2)\
-                        or filt_saltos(i, cp.notas, nota2):
+                add = False
+                breaker = False
+                fila = []
+                while add == False:
+                    nota2 = gerar_nota(cp)
+                    if nota2 in fila:
+                        print("$", len(fila), end="  ")
+                        continue
+                    else:
+                        # filtros restritivos
+                        if filt_diss(cf.modo[i], nota2) \
+                                or filt_pll(i, cf.modo, cp.notas, nota2) \
+                                or filt_rep(i, cp.notas, nota2) \
+                                or filt_meldis(i, cp.notas, nota2) \
+                                or filt_saltos(i, cp.notas, nota2):
+                            continue
+                        # filtros de recomendação
+                        else:
+                            if filt_grau_conj(i, cp.notas, nota2, fila):
+                                fila.append(nota2)
+                                if len(fila) > 20:
+                                    breaker = True
+                                    break
+                            else:
+                                cp.add(nota2)
+                                print(cp.notas)
+                                add = True
+
+                if breaker == True:
                     break
-                else:
-                    cp.add(nota2)
