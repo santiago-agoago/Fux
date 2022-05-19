@@ -43,10 +43,10 @@ def filt_pll(i, cf, res, nota):
 
 #filtros de recomendação (heurísticos)
 def filt_grau_conj(i, res, nota, fila):
-    if int_har(nota, res[i - 1]) <= 4 and int_har(nota, res[i - 1]) != 0:
+    if int_har(nota, res[i - 1]) <= 2 and int_har(nota, res[i - 1]) != 0:
         return False
     #permite saltos de acordo com o tamanho da fila e o tamanho do salto. valores devem ser ajustados
-    elif len(fila) > 1:
+    elif len(fila) > 5 and int_har(nota, res[i - 1]) <= 4 and int_har(nota, res[i - 1]) != 0:
         return False
     else:
         return True

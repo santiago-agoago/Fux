@@ -53,6 +53,6 @@ def teste():
     tempo_total = round(stop - start, 2)
     print(f"TEMPO TOTAL (s): {tempo_total}")
     print(f"ITERAÇÕES TOTAIS: {it_total}")
-    dados.write(f"{date.today()} git: {get_git()} / iterações: {it_total} t = {str(tempo_total)}\n")
+#    dados.write(f"{date.today()} git: {get_git()} / iterações: {it_total} t = {str(tempo_total)}\n")
 
 teste()

@@ -47,6 +47,7 @@ def main(cf, cp):
                 break
         fila = []
         for i in range(1, len(cf.modo)):
+            j = 0
             # CADENCIA
             if len(cp.notas) == len(cf.modo) - 3:
                 # sub-rotina de cadência
@@ -55,7 +56,7 @@ def main(cf, cp):
                     print(f"|iterações:    {it}")
                     print(f"|tempo (s):    {round(stop - start, 2)}")
                     print(f"|i/s:          {round(it / (stop - start), 2)}")
-                    return it
+                    return it + j
                     completou = True
                     break
                 else:
@@ -67,29 +68,35 @@ def main(cf, cp):
                 breaker = False
                 fila = []
                 while add == False:
+                    j += 1
+                    if j > 50:
+                        print("quebrou")
+                        breaker = True
+                        break
                     nota2 = gerar_nota(cp)
-                    if nota2 in fila:
-                        print("$", len(fila), end="  ")
+                    # filtros restritivos
+                    if filt_diss(cf.modo[i], nota2) \
+                            or filt_pll(i, cf.modo, cp.notas, nota2) \
+                            or filt_rep(i, cp.notas, nota2) \
+                            or filt_meldis(i, cp.notas, nota2) \
+                            or filt_saltos(i, cp.notas, nota2):
                         continue
+                    # filtros de recomendação
                     else:
-                        # filtros restritivos
-                        if filt_diss(cf.modo[i], nota2) \
-                                or filt_pll(i, cf.modo, cp.notas, nota2) \
-                                or filt_rep(i, cp.notas, nota2) \
-                                or filt_meldis(i, cp.notas, nota2) \
-                                or filt_saltos(i, cp.notas, nota2):
-                            continue
-                        # filtros de recomendação
+                        if filt_grau_conj(i, cp.notas, nota2, fila):
+                            fila.append(nota2)
+
                         else:
-                            if filt_grau_conj(i, cp.notas, nota2, fila):
-                                fila.append(nota2)
-                                if len(fila) > 20:
-                                    breaker = True
-                                    break
-                            else:
-                                cp.add(nota2)
-                                print(cp.notas)
-                                add = True
+                            cp.add(nota2)
+                            print(cp.notas, "bom", len(fila))
+                            fila = []
+                            add = True
+
+                        if len(fila) > 10:
+                            cp.add(nota2)
+                            print(cp.notas, "forçado", len(fila))
+                            fila = []
+                            add = True
 
                 if breaker == True:
                     break
