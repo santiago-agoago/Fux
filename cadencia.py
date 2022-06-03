@@ -11,6 +11,7 @@ def filtros(i, cf, cp, nota):
 
 #cadência primeira espécie
 def cad_prim(cf, cp, i):
+# antepenúltima nota
 # cadência tipo 1
     if cf.modo == dorico or cf.modo == eolio:
         if cp.reg == 2:
@@ -19,6 +20,7 @@ def cad_prim(cf, cp, i):
                 cp.add(nota2)
 
         else:
+            # IF
             nota2 = cf.modo[len(cf.modo) - 1]
             if not filtros(i, cf, cp, nota2):
                 cp.add(nota2)
@@ -31,7 +33,9 @@ def cad_prim(cf, cp, i):
             if not filtros(i, cf, cp, nota2):
                 cp.add(nota2)
         #tipo 2
+
         else:
+            # IF
             np = [cf.modo[len(cf.modo) - 1] - 4, cf.modo[len(cf.modo) - 1]]
             random.shuffle(np)
             for i in range(2):
@@ -48,6 +52,7 @@ def cad_prim(cf, cp, i):
                 cp.add(nota2)
         #tipo 2
         else:
+            # IF
             np = [cf.modo[len(cf.modo) - 1] - 3, cf.modo[len(cf.modo) - 1]]
             random.shuffle(np)
             for i in range(2):
@@ -56,6 +61,7 @@ def cad_prim(cf, cp, i):
                     cp.add(nota2)
                     break
 
+# EXCLUIR VVVVV
 # penúltima e última nota
     if len(cp.notas) == len(cf.modo) - 2:
         if cp.reg == 2:
@@ -63,6 +69,7 @@ def cad_prim(cf, cp, i):
             cp.add(nota2)
             cp.add(cf.modo[len(cf.modo) - 1] + 12)
             return True
+        #VERIFICAR OITAVA
         else:
             nota2 = cf.modo[len(cf.modo) - 2] - 3
             cp.add(nota2)

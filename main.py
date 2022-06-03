@@ -54,8 +54,8 @@ def main(cf, cp):
                 if cad_prim(cf, cp, i):
                     stop = timeit.default_timer()
                     print(f"|iterações:    {it}")
-                    print(f"|tempo (s):    {round(stop - start, 2)}")
-                    print(f"|i/s:          {round(it / (stop - start), 2)}")
+                    print(f"|tempo (s):    {round(stop - start, 5)}")
+                    print(f"|i/s:          {round(it / (stop - start), 5)}")
                     return it + j
                     completou = True
                     break
@@ -70,7 +70,7 @@ def main(cf, cp):
                 while add == False:
                     j += 1
                     if j > 50:
-                        print("quebrou")
+                        #print("quebrou ", end="")
                         breaker = True
                         break
                     nota2 = gerar_nota(cp)
@@ -88,13 +88,13 @@ def main(cf, cp):
 
                         else:
                             cp.add(nota2)
-                            print(cp.notas, "bom", len(fila))
+                            #print("bom ", end="")
                             fila = []
                             add = True
 
                         if len(fila) > 10:
                             cp.add(nota2)
-                            print(cp.notas, "forçado", len(fila))
+                            #print("forçado ", end="")
                             fila = []
                             add = True
 
