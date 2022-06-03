@@ -11,7 +11,14 @@ def filt_rep(i, res, nota):
 def filt_meldis(i, res, nota):
     if int_mel(res[i - 1], nota) in int_meldis or int_har(res[i - 1], nota) > 12:
         return True
-    #regras harmônicas
+def filt_ext(res, nota):
+    for i in res:
+        if int_har(nota, i) > 12:
+            return True
+
+
+
+#regras harmônicas
 def filt_saltos(i, res, nota):
     if i >= 3:
         #ascendente

@@ -4,7 +4,8 @@ def filtros(i, cf, cp, nota):
     if filt_pll(i, cf.modo, cp.notas, nota) \
             or filt_meldis(i, cp.notas, nota) \
             or filt_rep(i, cp.notas, nota) \
-            or filt_saltos(i, cp.notas, nota):
+            or filt_saltos(i, cp.notas, nota)\
+            or filt_ext(cp.notas, nota):
         return True
 
 def final_tipo1(i, cf, cp, ante):
