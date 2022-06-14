@@ -80,7 +80,9 @@ def main(cf, cp):
                             or filt_rep(i, cp.notas, nota2) \
                             or filt_meldis(i, cp.notas, nota2) \
                             or filt_saltos(i, cp.notas, nota2) \
-                            or filt_ext(cp.notas, nota2):
+                            or filt_ext(cp.notas, nota2) \
+                            or filt_cruz(i, cf.modo, cp, nota2) \
+                            or filt_oit(i, cf.modo, cp.notas, nota2):
                         continue
                     # filtros de recomendação
                     else:
