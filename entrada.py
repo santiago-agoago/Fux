@@ -58,4 +58,5 @@ def cf_auto():
         if entrada2 == 2:
             cp = RES(1, t)
 
+
     return cf, cp
