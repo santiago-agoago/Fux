@@ -51,12 +51,5 @@ def run_play_trans(cf, cp):
 
 cf, cp = cf_auto()
 
-cf_play, cp_play = run_play_trans(cf, cp)
+run_play_trans(cf, cp)
 
-#while True:
-#    play = input("Ouvir de novo?\nAperte enter > ")
-#
-#    if play == "":
-#
-#    else:
-#        break

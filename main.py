@@ -53,9 +53,9 @@ def main(cf, cp):
                 # sub-rotina de cadência
                 if cad_prim(cf, cp, i):
                     stop = timeit.default_timer()
-                    print(f"|iterações:    {it}")
-                    print(f"|tempo (s):    {round(stop - start, 5)}")
-                    print(f"|i/s:          {round(it / (stop - start), 5)}")
+                    print(f"%   |iterações:    {it}")
+                    print(f"%   |tempo (s):    {round(stop - start, 5)}")
+                    print(f"%   |i/s:          {round(it / (stop - start), 5)}")
                     return it + j
                     completou = True
                     break
