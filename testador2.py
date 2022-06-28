@@ -2,7 +2,7 @@ from entrada import *
 from main import *
 import timeit
 from timeit import repeat
-from datetime import date
+from datetime import *
 import subprocess
 
 dados = open("dados.txt", "a", encoding = "utf-8")
@@ -31,11 +31,13 @@ def teste():
     start = timeit.default_timer()
     it_total = 0
     lista = [1, 0]
-
+    dia = date.today().strftime("%d/%m/%y")
+    hora = datetime.now().strftime("%H:%M:%S")
     print("% % % % % % % % % % % % % % % % % % %\n"
         "\n\\version \"2.22.2\" \n\\language \"portugues\" \n"
-        "\n\\header {\n    title = \"Matheus Prado\""
-        f"\n    subtitle = \"Contrapontos de primeira espécie gerados por computador em {date.today()}\""
+        "\n\\header {"
+        f"\n    title = \"{dia}, {hora}\""
+        f"\n    subtitle = \"Contrapontos de primeira espécie gerados por computador\""
         f"\n    composer = \"Versão git: {get_git()}\""
         "\n}"
     )

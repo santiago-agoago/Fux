@@ -36,7 +36,7 @@ def run_play_trans(cf, cp):
     fork(play, args=[cf_part, cf.modo])
     play(res_part, cp.notas)
 
-    dia = date.today().strftime("%m/%d/%y")
+    dia = date.today().strftime("%d/%m/%y")
     hora = datetime.now().strftime("%H:%M:%S")
 
     perf = s.stop_transcribing()
