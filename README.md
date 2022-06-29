@@ -1,4 +1,4 @@
-# Fux
+# Fux 2.0
 
 Programa por restrições em Python para compor contrapontos no método de J. J. Fux.
 

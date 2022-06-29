@@ -69,7 +69,8 @@ def main(cf, cp):
                 fila = []
                 while add == False:
                     j += 1
-                    if j > 50:
+
+                    if j > 25: # 1/2
                         #print("quebrou ", end="")
                         breaker = True
                         break
@@ -81,8 +82,7 @@ def main(cf, cp):
                             or filt_meldis(i, cp.notas, nota2) \
                             or filt_saltos(i, cp.notas, nota2) \
                             or filt_ext(cp.notas, nota2) \
-                            or filt_cruz(i, cf.modo, cp, nota2) \
-                            or filt_oit(i, cf.modo, cp.notas, nota2):
+                            or filt_oit(i, cf.modo, cp.notas, nota2): #or filt_cruz(i, cf.modo, cp, nota2) \
                         continue
                     # filtros de recomendação
                     else:
@@ -91,13 +91,11 @@ def main(cf, cp):
 
                         else:
                             cp.add(nota2)
-                            #print("bom ", end="")
                             fila = []
                             add = True
 
-                        if len(fila) > 10:
+                        if len(fila) > 5: # 1/2
                             cp.add(nota2)
-                            #print("forçado ", end="")
                             fila = []
                             add = True
 
