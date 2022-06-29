@@ -70,7 +70,7 @@ def main(cf, cp):
                 while add == False:
                     j += 1
 
-                    if j > 25: # 1/2
+                    if j > 50:
                         #print("quebrou ", end="")
                         breaker = True
                         break
@@ -84,7 +84,8 @@ def main(cf, cp):
                             or filt_ext(cp.notas, nota2) \
                             or filt_oit(i, cf.modo, cp.notas, nota2): #or filt_cruz(i, cf.modo, cp, nota2) \
                         continue
-                    # filtros de recomendação
+
+                    # filtros parciais
                     else:
                         if filt_grau_conj(i, cp.notas, nota2, fila):
                             fila.append(nota2)
@@ -98,6 +99,7 @@ def main(cf, cp):
                             cp.add(nota2)
                             fila = []
                             add = True
+
 
                 if breaker == True:
                     break

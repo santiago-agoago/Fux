@@ -19,13 +19,6 @@ def run2(cf, cp):
     print_prim_esp_seq(cf, cp,)
     print()
 
-# resoluções em partitura única
-#def run2(cf, cp):
-#    global it
-#    it = main(cf, cp)
-#    print(f"%|cantus firmus:{cf.modo}\n%|resolução:    {cp.notas}")
-#    print_prim_esp_seq(cf, cp,)
-#    print()
 
 def teste():
     start = timeit.default_timer()
@@ -33,7 +26,8 @@ def teste():
     lista = [1, 0]
     dia = date.today().strftime("%d/%m/%y")
     hora = datetime.now().strftime("%H:%M:%S")
-    print("% % % % % % % % % % % % % % % % % % %\n"
+    print(
+        "% % % % % % % % % % % % % % % % % % %\n"
         "\n\\version \"2.22.2\" \n\\language \"portugues\" \n"
         "\n\\header {"
         f"\n    title = \"{dia}, {hora}\""
@@ -69,11 +63,14 @@ def teste():
                     cp = RES(j + 1, s)
                     run2(cf, cp)
                     it_total += it
+
     print("}\n% % % % % % % % % % % % % % % % % % %")
     stop = timeit.default_timer()
     tempo_total = round(stop - start, 5)
-    print(f"TEMPO TOTAL (s): {tempo_total}")
-    print(f"ITERAÇÕES TOTAIS: {it_total}")
+    print(
+        f"TEMPO TOTAL (s): {tempo_total}\n"
+        f"ITERAÇÕES TOTAIS: {it_total}"
+    )
     dados.write(f"{date.today()} git: {get_git()} / iterações: {it_total} t = {str(tempo_total)}\n")
 
 teste()
