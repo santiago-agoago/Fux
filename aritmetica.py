@@ -5,12 +5,15 @@ from dicionario import *
 def filt_tess(nota, voz):
     if nota > voz["ma"] or nota < voz["mi"]:
         return True
+
 def filt_rep(i, res, nota):
     if i > 1 and nota == res[i - 1] and nota == res[i - 2]:
         return True
+
 def filt_meldis(i, res, nota):
     if int_mel(res[i - 1], nota) in int_meldis or int_har(res[i - 1], nota) > 12:
         return True
+
 def filt_ext(res, nota):
     for i in res:
         if int_har(nota, i) > 12:
@@ -50,7 +53,7 @@ def filt_pll(i, cf, res, nota):
         if int_mel(res[i - 1], nota) <= 1 and int_mel(cf[i - 1], cf[i]) <= -1:
             return True
 
-# oitavas alcançadas de intervalo superior por salto (Mann p. 38)
+# oitavas alcançadas de intervalo superior por salto (Fux p. 38)
 def filt_oit(i, cf, res, nota):
     if int_har(cf[i], nota) == 12 and int_har(cf[i - 1], res[i - 1]) >= 14:
         if int_har(cf[i], cf[i - 1]) >= 3 or int_har(nota, res[i - 1]) >= 3:
