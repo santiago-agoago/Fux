@@ -58,4 +58,4 @@ def teste():
     print(f"ITERAÇÕES TOTAIS: {it_total}")
     dados.write(f"{date.today()} git: {get_git()} / iterações: {it_total} t = {str(tempo_total)}\n")
 
-teste()
+#teste()

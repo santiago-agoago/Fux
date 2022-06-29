@@ -1,6 +1,6 @@
 from entrada import *
 from dicionario import *
-from aritmetica import int_har_mus, int_mel_mus
+from aritmetica import int_mel_mus
 
 #print
 def print_prim_esp(cf, cp):

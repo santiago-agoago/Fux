@@ -111,3 +111,13 @@
 2022-06-29 git: 678f8b4 / iterações: 42 t = 0.04728
 2022-06-29 git: 678f8b4 / iterações: 24 t = 0.0468
 2022-06-29 git: 678f8b4 / iterações: 36 t = 0.05489
+2022-06-29 git: 06a6fcd / iterações: 23 t = 0.05139
+2022-06-29 git: 06a6fcd / iterações: 62 t = 0.06676
+2022-06-29 git: 06a6fcd / iterações: 33 t = 0.08199
+2022-06-29 git: 06a6fcd / iterações: 39 t = 0.06296
+2022-06-29 git: 06a6fcd / iterações: 49 t = 0.08732
+2022-06-29 git: 06a6fcd / iterações: 339 t = 0.27875
+2022-06-29 git: 06a6fcd / iterações: 146 t = 0.13182
+2022-06-29 git: 06a6fcd / iterações: 168 t = 0.17426
+2022-06-29 git: 06a6fcd / iterações: 63 t = 0.05056
+2022-06-29 git: 06a6fcd / iterações: 70 t = 0.08806
