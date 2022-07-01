@@ -1,11 +1,17 @@
+from matplotlib import pyplot as plt
+import numpy as np
 import statistics
 
 dados = open("dados.txt", "r")
 
-lista = []
+x = []
+y = []
 
-for i in range(22):
-    linha = dados.readline()
-    lista.append(int(linha[37:43]))
+for line in dados:
+    x.append(line[16:23])
+    for i in range(len(line)):
+        if line[i] == "t":
+            y_i = i + 4
+    y.append(line[y_i:y_i + 4])
 
-print(statistics.mean(lista))
+print(x, y)

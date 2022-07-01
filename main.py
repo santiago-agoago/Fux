@@ -45,10 +45,10 @@ def main(cf, cp):
                 print("Voz incompatível")
                 abortar = True
                 break
-        fila = []
+
+        # CADENCIA
         for i in range(1, len(cf.modo)):
             j = 0
-            # CADENCIA
             if len(cp.notas) == len(cf.modo) - 3:
                 # sub-rotina de cadência
                 if cad_prim(cf, cp, i):
