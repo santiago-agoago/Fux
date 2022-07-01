@@ -70,8 +70,7 @@ def main(cf, cp):
                 while add == False:
                     j += 1
 
-                    if j > 25: # 1/2
-                        #print("quebrou ", end="")
+                    if j > 30:
                         breaker = True
                         break
                     nota2 = gerar_nota(cp)
@@ -84,9 +83,12 @@ def main(cf, cp):
                             or filt_ext(cp.notas, nota2) \
                             or filt_oit(i, cf.modo, cp.notas, nota2): #or filt_cruz(i, cf.modo, cp, nota2) \
                         continue
-                    # filtros de recomendação
+
+                    # filtros parciais
                     else:
-                        if filt_grau_conj(i, cp.notas, nota2, fila):
+                        if filtp_grau_conj(i, cp.notas, nota2, fila)\
+                                or filtp_saltos(i, cp.notas, nota2, fila)\
+                                or filtp_escada(i, cp.notas, nota2):
                             fila.append(nota2)
 
                         else:
@@ -94,10 +96,11 @@ def main(cf, cp):
                             fila = []
                             add = True
 
-                        if len(fila) > 5: # 1/2
+                        if len(fila) > 20:
                             cp.add(nota2)
                             fila = []
                             add = True
+
 
                 if breaker == True:
                     break

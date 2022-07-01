@@ -5,7 +5,8 @@ def filtros(i, cf, cp, nota):
             or filt_meldis(i, cp.notas, nota) \
             or filt_rep(i, cp.notas, nota) \
             or filt_saltos(i, cp.notas, nota)\
-            or filt_ext(cp.notas, nota):
+            or filt_ext(cp.notas, nota)\
+            or filt_diss(cf.modo[i], nota): # evita uníssono na antepenúltima nota
         return True
 
 def final_tipo1(i, cf, cp, ante):

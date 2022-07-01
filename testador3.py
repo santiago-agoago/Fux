@@ -8,7 +8,8 @@ dia = date.today().strftime("%d/%m/%y")
 hora = datetime.now().strftime("%H:%M:%S")
 cf, cp = cf_auto()
 
-print("% % % % % % % % % % % % % % % % % % %\n"
+print(
+        "% % % % % % % % % % % % % % % % % % %\n"
         "\n\\version \"2.22.2\" \n\\language \"portugues\" \n"
         "\n\\header {"
         f"\n    title = \"{dia}, {hora}\""
@@ -17,5 +18,4 @@ print("% % % % % % % % % % % % % % % % % % %\n"
         "\n}"
     )
 
-for i in range(5):
-    run2(cf, cp)
+run2(cf, cp)

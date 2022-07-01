@@ -16,7 +16,7 @@ def run(cf, cp):
     # print(cf.modo, cf.voz)
     # print(cp.reg, cp.voz)
     it = main(cf, cp)
-    print(f"%|cantus firmus:{cf.modo}\n%|resolução:    {cp.notas}")
+    print(f"%   |cantus firmus:{cf.modo}\n%    |resolução:    {cp.notas}")
     print_prim_esp(cf, cp,)
     print()
 
@@ -58,4 +58,4 @@ def teste():
     print(f"ITERAÇÕES TOTAIS: {it_total}")
     dados.write(f"{date.today()} git: {get_git()} / iterações: {it_total} t = {str(tempo_total)}\n")
 
-teste()
+#teste()
