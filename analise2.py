@@ -11,13 +11,19 @@ git1 = 0
 x = 0
 
 for line in dados:
-    x_b.append(line[5:9])
+    x += 1
+    x_b.append(x)
     for i in range(len(line)):
         if line[i] == "t":
             y = i
-    y_b.append(float(line[y + 4:-1]))
-    z_b.append(float(line[37:y - 1]))
+    z_b.append(float(line[y + 4:-1]))
+    y_b.append(float(line[37:y - 1]) * 0.00001)
 
+plt.plot(x_b, y_b)
+plt.plot(x_b, z_b)
+plt.xlabel("Execuções")
+plt.ylabel("Tempo de execução (segundos)")
+plt.show()
 
 print(x_b)
 print(y_b)
