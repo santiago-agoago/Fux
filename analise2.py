@@ -19,10 +19,17 @@ for line in dados:
     z_b.append(float(line[y + 4:-1]))
     y_b.append(float(line[37:y - 1]) * 0.00001)
 
-plt.plot(x_b, y_b)
-plt.plot(x_b, z_b)
-plt.xlabel("Execuções")
-plt.ylabel("Tempo de execução (segundos)")
+fig, ax1 = plt.subplots()
+
+
+ax1.plot(x_b, y_b)
+ax1.set_ylabel("x10^-5")
+ax1.set_xlabel("Execuções")
+ax1.legend("Iterações do loop principal por execução", loc="upper left")
+ax2 = ax1.twinx()
+ax2.plot(x_b, z_b, color="orange")
+ax2.set_ylabel("Segundos", color="orange")
+ax2.legend("Tempo de execução", loc="upper right")
 plt.show()
 
 print(x_b)
