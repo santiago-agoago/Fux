@@ -22,16 +22,15 @@ for line in dados:
 fig, ax1 = plt.subplots()
 
 
-ax1.plot(x_b, y_b)
-ax1.set_ylabel("x10^-5")
+ax1.plot(x_b, y_b, color="blue", label="Iterações do loop principal")
+ax1.set_ylabel("x10^4", color="blue")
 ax1.set_xlabel("Execuções")
-ax1.legend("Iterações do loop principal por execução", loc="upper left")
+ax1.legend(loc="upper left")
 ax2 = ax1.twinx()
-ax2.plot(x_b, z_b, color="orange")
-ax2.set_ylabel("Segundos", color="orange")
-ax2.legend("Tempo de execução", loc="upper right")
+ax2.plot(x_b, z_b, color="red", label="Tempo de execução")
+ax2.set_ylabel("Segundos", color="red")
+ax2.legend(loc="upper right")
+
 plt.show()
 
-print(x_b)
-print(y_b)
-print(z_b)
+
